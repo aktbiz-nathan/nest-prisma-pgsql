@@ -13,6 +13,7 @@ export class CustomerService {
   /* Customized Service functions */
   /* Fetch all customer */
   getAllCustomers(): Record<string, unknown>[] {
+    console.log('getAllCustomers Service reached');
     return this.customers;
   }
 

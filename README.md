@@ -121,3 +121,11 @@ Check out a few resources that may come in handy when working with NestJS:
 - Applying provider exportation and module exportation
 - Global Modules
 - Dynamic Modules `static forRoot(entities = [], options?): DynamicModule{}`
+
+### Middlewares
+- Functional Middlewares
+- Class Based Middlewares
+- Class Based vs Function Based Middlewares
+- Registering Class Based Middlewares
+- Global and Route Based Middlewares
+- Example usage of Middleware `Class Based, Logger`

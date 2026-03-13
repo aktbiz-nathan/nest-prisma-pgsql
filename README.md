@@ -83,16 +83,41 @@ Check out a few resources that may come in handy when working with NestJS:
 - To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
 - Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
-## Support
+## What I learned
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Controllers
 
-## Stay in touch
+- What is `main.ts`
+- Different types of Nest Applications/Platforms `platform-express` & `platform-fastify`
+- What is Controller
+- Adding Metadata to @Controller e.g. `@Controller('cars')`
+- Adding path on `@Get`
+- Route Handlers `@Get(), @Post(), @Put()`
+- Response Handling
+- Using Express `res` and `req` objects
+- Using `@Body()`
+- Route wildcards `@Get('ab*cd')`
+- Status codes
+- Adding the Controller to a Module
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Service Providers & Dependency Injection
+- The different layers of a Backend application `Http Req -> Controller (get, post) -> Service (logic) -> Data Access Layer (dbops)`
+- Providers and `@Injectable`
+- Generating new Controller `nest g controller name` (but this is better incorporate entire things `nest g res name`)
+- Injecting the Provider as a Dependency
+- Creating Handlers in Controller
+- Common Dependency Injection errors
+- Using a Provider outside of its module
+- Provider Scopes
+- Custom Providers and Tokens
+- String Based Token Names
+- Using Dynamic Providers
 
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Modules
+- What Are Modules?
+- Components of a Module
+- When to use a module?
+- Module re-exporting
+- Applying provider exportation and module exportation
+- Global Modules
+- Dynamic Modules `static forRoot(entities = [], options?): DynamicModule{}`

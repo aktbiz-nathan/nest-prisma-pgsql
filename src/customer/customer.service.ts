@@ -1,41 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCustomerDto } from './dto/create-customer.dto';
-import { UpdateCustomerDto } from './dto/update-customer.dto';
 
 /* A provider that can be injected as a dependency */
-@Injectable()
+/* Provider scopes
+  - DEFAULT: The default scope. Nest creates a single instance of the provider and shares it across the entire application. This is the most common scope and is suitable for services that maintain state or perform operations that should be consistent across the application.
+  - TRANSIENT: Nest creates a new instance of the provider each time it is injected. This scope is useful for services that are stateless or need to maintain separate instances for different parts of the application.
+  - REQUEST: Nest creates a new instance of the provider for each incoming request. This scope is ideal for services that need to maintain state specific to a single request, such as user authentication or request-specific data processing.
+*/
+@Injectable(/* {scope: Scope.DEFAULT} */)
 export class CustomerService {
-  customers: any[] = [];
+  customers: Record<string, unknown>[] = [];
 
   /* Customized Service functions */
   /* Fetch all customer */
-  getAllCustomers() {
+  getAllCustomers(): Record<string, unknown>[] {
     return this.customers;
   }
 
   /* Create customer */
-  createCustomer(customer: any) {
+  createCustomer(customer: Record<string, unknown>): void {
     this.customers.push(customer);
-  }
-
-  /* Generated CRUD service controller */
-  create(createCustomerDto: CreateCustomerDto) {
-    return 'This action adds a new customer';
-  }
-
-  findAll() {
-    return `This action returns all customer`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} customer`;
-  }
-
-  update(id: number, updateCustomerDto: UpdateCustomerDto) {
-    return `This action updates a #${id} customer`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} customer`;
   }
 }

@@ -101,6 +101,7 @@ Check out a few resources that may come in handy when working with NestJS:
 - Adding the Controller to a Module
 
 ### Service Providers & Dependency Injection
+
 - The different layers of a Backend application `Http Req -> Controller (get, post) -> Service (logic) -> Data Access Layer (dbops)`
 - Providers and `@Injectable`
 - Generating new Controller `nest g controller name` (but this is better incorporate entire things `nest g res name`)
@@ -114,6 +115,7 @@ Check out a few resources that may come in handy when working with NestJS:
 - Using Dynamic Providers
 
 ### Modules
+
 - What Are Modules?
 - Components of a Module
 - When to use a module?
@@ -123,9 +125,19 @@ Check out a few resources that may come in handy when working with NestJS:
 - Dynamic Modules `static forRoot(entities = [], options?): DynamicModule{}`
 
 ### Middlewares
+
 - Functional Middlewares
 - Class Based Middlewares
 - Class Based vs Function Based Middlewares
 - Registering Class Based Middlewares
 - Global and Route Based Middlewares
 - Example usage of Middleware `Class Based, Logger`
+
+### Exception Filters
+
+- How Nest handles thrown errors by default
+- Throwing HttpException with different properties
+- Different Built-in HTTP exceptions
+- Exception Filters
+- Applying our custom Exception Filter
+- Custom global error handler

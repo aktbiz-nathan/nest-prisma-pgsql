@@ -7,11 +7,18 @@ import {
   HttpStatus,
   ForbiddenException, */
   BadRequestException,
+  UsePipes,
+  Query,
+  ParseIntPipe,
   // UseFilters,
 } from '@nestjs/common';
 import { CustomerService } from './customer.service';
 // import { HttpExceptionFilter } from 'src/exception-filters/http-exception.filter';
 import errors from 'src/config/errors.config';
+import { FirstPipe } from 'src/pipes/first-pipe/first-pipe.pipe';
+import type { CreateCustomerDto } from './dto/create-customer.dto';
+import { createCustomerSchema } from './dto/create-customer.dto';
+import { ZodValidationPipe } from 'src/pipes/zod-pipe/zod-pipe.pipe';
 
 @Controller('customer')
 export class CustomerController {
@@ -28,7 +35,7 @@ export class CustomerController {
   // @UseFilters(  new HttpExceptionFilter(),)
   /* To use the custom exception filter in this specific route. But if you place it at the controller level, 
   it will be applied to all routes in this controller. */
-  getAllCustomers() {
+  getAllCustomers(@Query('limit', new ParseIntPipe()) limit) {
     /* 
       ? throw new Error('Error ngani');
       The result was
@@ -73,7 +80,7 @@ export class CustomerController {
     }
     */
 
-    throw new BadRequestException(errors.validationFailed);
+    // throw new BadRequestException(errors.validationFailed);
     /* 
     The result was:
     {
@@ -83,10 +90,33 @@ export class CustomerController {
     }
     */
     // return this.customerService.getAllCustomers();
+
+    console.log('The type of limit is:', typeof limit);
+    /* Result: The type of limit is: string */
+    /* The result will change to "The type of limit is: number" if we use the ToNumberPipe */
+    return this.customerService.getAllCustomers();
   }
 
+  @UsePipes(new ZodValidationPipe(createCustomerSchema))
   @Post()
-  createCustomer(@Body() body) {
+  createCustomer(@Body() body: CreateCustomerDto) {
+    console.log('In the route handler logic with body', body);
+    return this.customerService.createCustomer(body as any);
+  }
+  /* 
+  Code:
+  @UsePipes(FirstPipe)
+  @Post()
+  createCustomer(@Body() body, @Query() query) {
     return this.customerService.createCustomer(body);
   }
+  
+  Output: (Take note of that in method, the last parameter will run from right to left, so the query will run first before the body)
+  FirstPipe value: [Object: null prototype] { limit: 'asd' }
+  FirstPipe metadata type: query
+  FirstPipe metadata data: undefined
+  FirstPipe value: { name: 'asdsadada', age: 21 }
+  FirstPipe metadata type: body
+  FirstPipe metadata data: undefined
+  */
 }

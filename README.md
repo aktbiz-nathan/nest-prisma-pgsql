@@ -141,3 +141,14 @@ Check out a few resources that may come in handy when working with NestJS:
 - Exception Filters
 - Applying our custom Exception Filter
 - Custom global error handler
+
+### Pipes & Validation
+- What is a pipe?
+- Understanding the Pipe arguments
+- Using a transformation pipe
+- Introducing Built-in pipes
+- Configuring pipes
+- Handling Multiple Arguments
+- Throwing errors from our pipes
+- Using ValidationPipe
+- Using Zod validation
